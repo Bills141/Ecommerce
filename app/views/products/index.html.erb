@@ -1,0 +1,100 @@
+<div class="container">
+<div class="row text-center">
+<div class="col-md-2">
+
+<% @product.each do |pd| %>
+<div class="col-sm-3 thumbnail">
+<%  if current_user.admin? %>
+<%= image_tag pd.image.url, size: "100x100"%><%= pd.name %> <br><%= link_to('Edit',edit_product_path(pd.id))%>:    <%= link_to('Delete',  product_path(pd.id),method: :delete)%><br>
+<%#= pd.name %>
+<p>usd:<%= pd.prize%></p>
+<% else%>
+  <%= image_tag pd.image, size: "150x150"%>
+ <p><%= pd.name %></p>
+ <p>usd.<%= pd.prize %></p>
+ <%= link_to('Buy')%>
+
+<% end %>
+</div>
+</div>
+<% end %>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<br>
+<br>
+<br>
+
+<%#= link_to('logout', destroy_user_session_path, method: :delete) %><br>
+
+
+
+

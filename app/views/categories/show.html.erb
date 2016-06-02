@@ -1,0 +1,6 @@
+<%= @category.name %><br>
+<%@category.products.each do |cp| %>
+<%= image_tag cp.image.url%>
+<%= cp.name%>
+$<%= cp.prize%>
+<%end %>

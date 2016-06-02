@@ -1,0 +1,22 @@
+<h1>Welcome to home index page</h1>
+
+
+<div class="col-sm-9">
+    <h4>All Products</h4>
+    <hr />
+                
+    <div class="row text-center">
+        
+        <% @product.each do |product| %>
+            <div class="col-sm-3 thumbnail">
+
+                <%= link_to image_tag(product.image.url),product %>
+                <p><%= product.name %></p>
+                <h4>$<%= product.prize %></h4>
+                <%= link_to('Buy',new_user_registration_path)%>
+            </div>
+
+        <% end %>
+
+    </div>
+</div>

@@ -1,0 +1,64 @@
+  <div class="image">
+  <div class="top-content ">
+    <!-- <div class="inner-bg"> -->
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-6 col-sm-offset-3 form-box">
+            <div class="panel-heading">
+              <div class="form-top-left">
+              <h3>Login to our site</h3>
+              <p>Enter your Email and Password to log on:</p>
+              </div>
+              <div class="form-top-right">
+              <i class="fa fa-key"></i>
+              </div>
+            </div>
+            <div class="form-bottom">
+              <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+              <div class="form-group">
+                <%= f.label :email, class: "sr-only", for: "form-email" %>
+                <%= f.email_field :email, placeholder: "Email...", class: "form-email form-control" %>
+              </div>
+              <div class="form-group">
+              <%= f.label :password, class: "sr-only", for: "form-password" %>
+              <%=  f.password_field :password, placeholder: "Password...", class: "form-password form-control" %>
+              </div>
+              <%# binding.pry %>
+              <%= f.submit 'Sign in!', :class => 'btn btn-success btn-block btn-default'%>
+              <% if devise_mapping.rememberable? -%>
+              <div class="field">
+                <%= f.check_box :remember_me %>
+                <%= f.label :remember_me %>
+              </div>
+                <% end -%>
+                <%- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
+                  <%= link_to "Forgot your password?", new_password_path(resource_name) %><br />
+                <% end -%>
+                <%#= render "users/shared/links" %>
+           </div>
+          
+           
+          </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-6 col-sm-offset-3 social-login">
+            <h3>...or login with:</h3>
+            <div class="social-login-buttons">
+              <a class="btn btn-link-1 btn-link-1-facebook" href="#">
+              <i class="fa fa-facebook"></i> Facebook
+              </a>
+              <a class="btn btn-link-1 btn-link-1-twitter" href="#">
+              <i class="fa fa-twitter"></i> Twitter
+              </a>
+              <a class="btn btn-link-1 btn-link-1-google-plus" href="#">
+              <i class="fa fa-google-plus"></i> Google Plus
+              </a>
+           </div>
+        </div>
+      </div>
+            </div>
+            
+        <% end %>
+
+   
+   

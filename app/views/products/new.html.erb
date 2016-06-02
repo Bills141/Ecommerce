@@ -1,0 +1,11 @@
+<%= form_for @product do |f| %>
+	<%=  f.text_field :name %>
+	<%=  f.file_field :image%>
+	<%=  f.label :prize, "Prize: $"  %>
+	<%=  f.number_field :prize %>
+	<%# binding.pry %>
+	<%= f.collection_check_boxes :category_ids, Category.all, :id, :name do |cb| %>
+	<% cb.label(class: "checkboxs-inline input_checkboxes") {cb.check_box(class: "check_box") + cb.text } %>
+	<% end %>
+	<%= f.submit 'Add'%>
+<% end %>

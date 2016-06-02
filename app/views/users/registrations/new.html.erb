@@ -1,0 +1,91 @@
+   <script language= "javascript">
+      Stripe.setPublishableKey("<%= ENV['STRIPE_TEST_PUBLISHABLE_KEY']%>");
+   </script>
+
+  <div class="top-content ">
+    <!-- <div class="inner-bg"> -->
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-6 col-sm-offset-3 form-box">
+            <div class="panel-heading">
+              <div class="form-top-left">
+              <h3>Sign up to our site</h3>
+              <p>Enter your credentials to log on:</p>
+              </div>
+              <div class="form-top-right">
+              <i class="fa fa-key"></i>
+              </div>
+            </div>
+            <div class="form-bottom">
+           
+              <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { role: 'form',class: "cc_form"}) do |f|  %>
+              <%= devise_error_messages! %>
+              <div class="form-group">
+                <%#= f.label :first_name, class: "sr-only", for: "form-name" %>
+                <%#= f.text_field :first_name, placeholder: "first name", class: "form-name form-control" %>
+              </div>
+              <div class="form-group">
+                <%#= f.label :last_name, class: "sr-only", for: "form-name" %>
+                <%#= f.text_field :last_name, placeholder: "last name", class: "form-email form-control" %>
+              </div>
+              <div class="form-group">
+                <%= f.label :email, class: "sr-only", for: "form-email" %>
+                <%= f.email_field :email, placeholder: "Email...", class: "form-email form-control" %>
+              </div>
+              <div class="form-group">
+               <%= f.label :password, class: 'sr-only', for: 'form-password' %>
+                <% if @minimum_password_length %>
+                <em>(<%= @minimum_password_length %> characters minimum)</em>
+               <% end %><br />
+               <%= f.password_field :password, autocomplete: "off", placeholder: 'Password...', class: ' form-control' %>
+               </div>
+               <div class="form-group">
+                <%= f.label :password_confirmation, class: 'sr-only', for: 'form-password' %>
+                <%= f.password_field :password_confirmation, autocomplete: "off", class: ' form-control', placeholder: 'password_confirmation' %>
+               </div>
+
+              <div class="form-group">
+              <%#= f.label :image, class: "sr-only", for: "form-password" %>
+              <%#=  f.file_field :image%>
+              </div>
+   
+   <%= fields_for( :payment ) do  |p| %>
+    <div class="row col-md-12">
+      <div class="form-group col-md-8 no left-padding" >
+        <%= p.label :card_number, "Card Number", data: {stripe: 'label'}%>
+        <%= p.text_field :card_number, class: "form-control",
+           required: true, data: {stripe: 'number'}%>
+      </div>
+      <div class="form-group col-sm-3" >
+        <%= p.label :card_cvv, "Card CVV", data: { stripe: 'label'}%>
+        <%= p.text_field :card_cvv, 
+        class: "form-control", required: true, data: { stripe: 'cvv'}%>
+      </div>
+      <div class="form-group col-sm-6">
+       <div class="col-md-12">
+        <%= p.label :card_expires, "Card Expires", data: { stripe: 'label'}%>
+        </div><br>
+        <div class="col-sm-6">
+          <%= p.select :card_expires_month, 
+          options_for_select(Payment.month_options), { include_blank: 'Month'}, 
+          "data-stripe" => 'exp-month',class: "form-control", required: true %>
+        </div>
+        <div class="col-sm-6">
+          <%= p.select :card_expires_year, options_for_select(Payment.year_options.push),
+          { include_blank: 'Year'}, class: "form-control", data: { stripe: "exp-year"},      required: true %>
+                    
+        </div>
+       </div>
+      </div>  
+     <% end %>
+              <%= f.submit 'Sign up!', :class => 'btn btn-success btn-block'%>
+                <% end %>
+                </div>
+                </div>
+                </div>
+                </div>
+                </div></div>
+              
+
+
+
